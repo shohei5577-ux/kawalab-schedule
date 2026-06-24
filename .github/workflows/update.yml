@@ -1,0 +1,58 @@
+name: スケジュール自動更新
+
+# クラウド(GitHub)上で定期的にスクレイパを実行し、最新の予定を
+# data/schedule.json に書き戻す。パソコンを閉じていても動く。
+# 公開リポジトリなら Actions は完全無料。
+
+on:
+  schedule:
+    # 毎時7分に実行(混雑する正時=0分を避ける)。
+    # GitHubの都合で実際は数十分ズレたり、ごく稀にスキップされることがある=「おおむね1時間ごと」。
+    - cron: "7 * * * *"
+  workflow_dispatch: {}   # 手動実行ボタン(Actionsタブから今すぐ回せる)
+
+# 書き戻しのための最小権限だけを与える
+permissions:
+  contents: write
+
+# 実行が重ならないようにする
+concurrency:
+  group: update-schedule
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリを取得
+        uses: actions/checkout@v4
+
+      - name: スケジュールを取得・更新
+        run: python3 updater/update_schedule.py
+
+      - name: 変更があればコミット&反映
+        run: |
+          git config user.name  "kawalab-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/schedule.json
+          if git diff --staged --quiet; then
+            echo "変更なし。コミットしません。"
+          else
+            git commit -m "auto: スケジュール更新 ($(date -u +%Y-%m-%dT%H:%MZ))"
+            git push
+          fi
+
+      - name: 取得が壊れていないか点検(壊れていたらこのジョブを失敗させ、GitHubが自動でメール通知)
+        run: |
+          python3 - <<'PY'
+          import json, sys
+          d = json.load(open("data/schedule.json", encoding="utf-8"))
+          meta = d.get("meta", {})
+          ok = bool(meta.get("ok", False))
+          n = int(meta.get("event_count", 0))
+          print(f"ok={ok} / event_count={n}")
+          if (not ok) or n == 0:
+              print("::error::スケジュール取得に失敗、または0件です。取得元サイトの構造が変わった可能性があります。updater/update_schedule.py の解析部分の修正が必要かもしれません。")
+              sys.exit(1)
+          print("点検OK")
+          PY

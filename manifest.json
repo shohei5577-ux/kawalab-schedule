@@ -1,0 +1,16 @@
+{
+  "name": "カワラボ カレンダー",
+  "short_name": "カワラボ",
+  "description": "KAWAII LAB. 推し活スケジュール（非公式ファンツール）",
+  "lang": "ja",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff0f8",
+  "theme_color": "#ffd0e8",
+  "icons": [
+    { "src": "assets/img/icon.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/img/icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

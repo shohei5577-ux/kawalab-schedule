@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <!-- 検索エンジンに載せない（URLを知っている人だけが見る運用） -->
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffd0e8" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#251a2e" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="カワラボ" />
+  <title>カワラボ カレンダー｜KAWAII LAB. 推し活スケジュール</title>
+  <link rel="icon" href="assets/img/icon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <!-- OGP（リンク共有カード）。公開時は og:image を絶対URLにすると確実 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="カワラボ カレンダー｜KAWAII LAB. 推し活スケジュール" />
+  <meta property="og:description" content="ライブ・チケット・かぶりを、ひと目でチェック。KAWAII LAB. の推し活スケジュール（非公式ファンツール）。" />
+  <meta property="og:image" content="assets/img/ogp.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="assets/img/ogp.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <!-- ====== ヘッダー ====== -->
+  <header class="app-header">
+    <div class="app-header__inner">
+      <div class="brand">
+        <span class="brand__mark">♡</span>
+        <div class="brand__txt">
+          <h1 class="brand__title">カワラボ カレンダー</h1>
+          <p class="brand__sub">KAWAII LAB. 推し活スケジュール</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <span id="updated" class="updated" title="自動で最新に更新されます">最終更新 …</span>
+        <button id="oshiBtn" class="btn btn--ghost" type="button">⭐ 推し設定</button>
+        <button id="refreshBtn" class="btn btn--icon" type="button" title="今すぐ最新を読み込む">⟳</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====== ビュー切替タブ ====== -->
+  <nav class="tabs" id="tabs">
+    <button class="tab is-active" data-view="calendar">📅 カレンダー</button>
+    <button class="tab" data-view="list">📋 リスト</button>
+    <button class="tab" data-view="tickets">🎫 チケット</button>
+    <button class="tab" data-view="goods">🛍 物販</button>
+  </nav>
+
+  <main class="container">
+
+    <!-- 自己点検バナー(更新に問題があるときだけ表示) -->
+    <div id="healthBanner" class="health-banner" hidden></div>
+
+    <!-- グループ フィルタ -->
+    <section class="filters" id="filters" aria-label="グループで絞り込み">
+      <div class="filters__row" id="groupChips"></div>
+      <div class="filters__row filters__row--sub">
+        <label class="oshi-only">
+          <input type="checkbox" id="oshiOnly" /> 推しだけ表示
+        </label>
+        <span class="legend" id="conflictLegend">⚡ = この日はライブがかぶってる！</span>
+      </div>
+    </section>
+
+    <!-- ====== カレンダービュー ====== -->
+    <section class="view view--calendar is-active" id="view-calendar">
+      <div class="cal-nav">
+        <button class="btn btn--icon" id="prevMonth" type="button" aria-label="前の月">‹</button>
+        <h2 class="cal-nav__title" id="calTitle">2026年6月</h2>
+        <button class="btn btn--icon" id="nextMonth" type="button" aria-label="次の月">›</button>
+        <button class="btn btn--ghost btn--today" id="todayBtn" type="button">今日</button>
+      </div>
+      <div class="cal-grid" id="calGrid"></div>
+      <p class="cal-hint">日付をタップすると、その日の予定とチケット・会場・ドライブ情報が開きます。</p>
+    </section>
+
+    <!-- ====== リストビュー ====== -->
+    <section class="view view--list" id="view-list">
+      <div id="listBody"></div>
+    </section>
+
+    <!-- ====== チケット・締切ビュー ====== -->
+    <section class="view view--tickets" id="view-tickets">
+      <div class="panel-intro">
+        <h2>🎫 チケット・締切</h2>
+        <p>発売中・申込受付中・締切が近いものを上から順に。タップで詳細＆購入リンク。</p>
+      </div>
+      <div id="ticketsBody"></div>
+    </section>
+
+    <!-- ====== 物販ビュー ====== -->
+    <section class="view view--goods" id="view-goods">
+      <div class="panel-intro">
+        <h2>🛍 物販・グッズ</h2>
+        <p>公式ショップ・トレカ・現地物販の入口と、近い現場の物販メモ。</p>
+      </div>
+      <div class="goods-links">
+        <a class="goods-card" href="https://asobisystem.shop/shops/kawaiilab" target="_blank" rel="noopener">
+          <span class="goods-card__ico">🛍</span>
+          <span class="goods-card__t">公式グッズショップ</span>
+          <span class="goods-card__d">ASOBISYSTEM SHOP</span>
+        </a>
+        <a class="goods-card" href="https://www.kl-tc.sukisuki-shop.com/" target="_blank" rel="noopener">
+          <span class="goods-card__ico">🃏</span>
+          <span class="goods-card__t">トレカ</span>
+          <span class="goods-card__d">KAWAII LAB. トレーディングカード</span>
+        </a>
+        <a class="goods-card" href="https://kawaiilab.asobisystem.com/" target="_blank" rel="noopener">
+          <span class="goods-card__ico">📰</span>
+          <span class="goods-card__t">公式サイト・最新情報</span>
+          <span class="goods-card__d">KAWAII LAB. OFFICIAL</span>
+        </a>
+      </div>
+      <h3 class="goods-sub">近い現場の物販・特典会</h3>
+      <div id="goodsBody"></div>
+    </section>
+
+    <!-- ====== 近日の誕生日 ====== -->
+    <section class="bday" id="bdaySection">
+      <h3 class="bday__title"><img class="bday__fairy" src="assets/img/mascot-bday.png" alt="" onerror="this.outerHTML='🎂 '">近日のメンバー誕生日</h3>
+      <div class="bday__row" id="bdayRow"></div>
+    </section>
+
+  </main>
+
+  <footer class="app-footer">
+    <p>データ出典：<a href="https://kawaiilab.asobisystem.com/live_information/schedule/list" target="_blank" rel="noopener">KAWAII LAB. 公式スケジュール</a>／<a href="https://www.eventernote.com/" target="_blank" rel="noopener">Eventernote</a>（1時間ごとに自動更新）</p>
+    <p class="app-footer__note">非公式のファン用ツールです。最終確認は必ず公式サイト・チケットサイトでお願いします。</p>
+  </footer>
+
+  <!-- ====== 詳細ドロワー ====== -->
+  <div class="drawer-backdrop" id="backdrop" hidden></div>
+  <aside class="drawer" id="drawer" hidden aria-modal="true" role="dialog">
+    <button class="drawer__close" id="drawerClose" aria-label="閉じる">✕</button>
+    <div class="drawer__body" id="drawerBody"></div>
+  </aside>
+
+  <!-- ====== 推し設定モーダル ====== -->
+  <div class="modal-backdrop" id="oshiBackdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal__head">
+        <h2>⭐ 推し設定</h2>
+        <button class="drawer__close" id="oshiClose" aria-label="閉じる">✕</button>
+      </div>
+      <p class="modal__lead">推しのグループ・メンバーを選ぶと、カレンダーで目立たせて、誕生日も優先表示します。</p>
+      <div class="modal__body" id="oshiBody"></div>
+      <div class="modal__foot">
+        <button class="btn btn--primary" id="oshiSave" type="button">保存する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>

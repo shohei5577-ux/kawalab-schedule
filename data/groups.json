@@ -1,0 +1,129 @@
+{
+  "_comment": "KAWAII LAB. グループ/メンバーのマスターデータ。color=カレンダーの色分けに使うアクセント色。members[].colorHex=メンバーカラー。birthday=MM-DD。出典: KAWAII LAB.公式 / エンタメクロス(メンバーカラー)。メンバーは変動するので適宜更新。",
+  "updated": "2026-06-22",
+  "groups": [
+    {
+      "id": "fruits_zipper",
+      "name": "FRUITS ZIPPER",
+      "short": "FZ",
+      "reading": "フルーツジッパー",
+      "color": "#ff8fc0",
+      "eventernote": "https://www.eventernote.com/actors/FRUITS%20ZIPPER/65740",
+      "members": [
+        {"name": "仲川 瑠夏", "color": "紫", "colorHex": "#9b6dff", "birthday": "07-03"},
+        {"name": "鎮西 寿々歌", "color": "オレンジ", "colorHex": "#ff9f43", "birthday": "11-24"},
+        {"name": "真中 まな", "color": "空色", "colorHex": "#7cc6f7", "birthday": "04-22"},
+        {"name": "月足 天音", "color": "赤", "colorHex": "#ff5c5c", "birthday": "10-26"},
+        {"name": "櫻井 優衣", "color": "ミントグリーン", "colorHex": "#5fd6a6", "birthday": "02-21"},
+        {"name": "松本 かれん", "color": "ベビーピンク", "colorHex": "#ffc2dd", "birthday": "03-28"},
+        {"name": "早瀬 ノエル", "color": "黄", "colorHex": "#ffd23f", "birthday": "12-29"}
+      ]
+    },
+    {
+      "id": "candy_tune",
+      "name": "CANDY TUNE",
+      "short": "CT",
+      "reading": "キャンディチューン",
+      "color": "#b08fe0",
+      "eventernote": "https://www.eventernote.com/actors/CANDY%20TUNE/70514",
+      "members": [
+        {"name": "福山 梨乃", "color": "水色", "colorHex": "#5ec8f0", "birthday": "12-24"},
+        {"name": "小川 奈々子", "color": "ミントグリーン", "colorHex": "#5fd6a6", "birthday": "10-01"},
+        {"name": "村川 緋杏", "color": "ピンク", "colorHex": "#ff7eb6", "birthday": "12-03"},
+        {"name": "南 なつ", "color": "オレンジ", "colorHex": "#ff9f43", "birthday": "03-17"},
+        {"name": "立花 琴未", "color": "赤", "colorHex": "#ff5c5c", "birthday": "05-25"},
+        {"name": "宮野 静", "color": "紫", "colorHex": "#9b6dff", "birthday": "05-30"},
+        {"name": "桐原 美月", "color": "青", "colorHex": "#5b8def", "birthday": "02-21"}
+      ]
+    },
+    {
+      "id": "cutie_street",
+      "name": "CUTIE STREET",
+      "short": "CS",
+      "reading": "キューティーストリート",
+      "color": "#7ec8ec",
+      "eventernote": "https://www.eventernote.com/actors/CUTIE%20STREET/79433",
+      "members": [
+        {"name": "古澤 里紗", "color": "黄色", "colorHex": "#ffd23f", "birthday": "11-08"},
+        {"name": "佐野 愛花", "color": "赤色", "colorHex": "#ff5c5c", "birthday": "11-26"},
+        {"name": "板倉 可奈", "color": "ミントグリーン", "colorHex": "#5fd6a6", "birthday": "11-11"},
+        {"name": "川本 笑瑠", "color": "オレンジ", "colorHex": "#ff9f43", "birthday": "04-22"},
+        {"name": "増田 彩乃", "color": "青色", "colorHex": "#5b8def", "birthday": "05-26"},
+        {"name": "真鍋 凪咲", "color": "紫色", "colorHex": "#9b6dff", "birthday": "06-28"},
+        {"name": "梅田 みゆ", "color": "水色", "colorHex": "#5ec8f0", "birthday": "09-13"},
+        {"name": "桜庭 遥花", "color": "ピンク", "colorHex": "#ff7eb6", "birthday": "01-29"}
+      ]
+    },
+    {
+      "id": "sweet_steady",
+      "name": "SWEET STEADY",
+      "short": "SS",
+      "reading": "スイートステディ",
+      "color": "#ffac6b",
+      "eventernote": "https://www.eventernote.com/actors/SWEET%20STEADY/76303",
+      "members": [
+        {"name": "塩川 莉世", "color": "紫", "colorHex": "#9b6dff", "birthday": "07-31"},
+        {"name": "庄司 なぎさ", "color": "オレンジ", "colorHex": "#ff9f43", "birthday": "10-29"},
+        {"name": "白石 まゆみ", "color": "赤", "colorHex": "#ff5c5c", "birthday": "12-27"},
+        {"name": "奥田 彩友", "color": "青", "colorHex": "#5b8def", "birthday": "01-07"},
+        {"name": "音井 結衣", "color": "水色", "colorHex": "#5ec8f0", "birthday": "01-09"},
+        {"name": "栗田 なつか", "color": "ピンク", "colorHex": "#ff7eb6", "birthday": "07-19"},
+        {"name": "山内 咲奈", "color": "黄", "colorHex": "#ffd23f", "birthday": "02-29"}
+      ]
+    },
+    {
+      "id": "more_star",
+      "name": "MORE STAR",
+      "short": "MS",
+      "reading": "モアスター",
+      "color": "#ffcf4d",
+      "eventernote": "https://www.eventernote.com/actors/MORE%20STAR/89061",
+      "members": []
+    },
+    {
+      "id": "kawaii_lab_mates",
+      "name": "KAWAII LAB. MATES",
+      "short": "MATES",
+      "reading": "カワイイラボメイツ",
+      "color": "#b3b3c4",
+      "eventernote": "https://www.eventernote.com/actors/KAWAII%20LAB.%20MATES/75331",
+      "members": []
+    },
+    {
+      "id": "kawaii_lab_south",
+      "name": "KAWAII LAB. SOUTH",
+      "short": "SOUTH",
+      "reading": "カワイイラボサウス",
+      "color": "#5fc7bf",
+      "eventernote": "https://www.eventernote.com/actors/KAWAII%20LAB.%20SOUTH/86376",
+      "members": []
+    },
+    {
+      "id": "fav_me",
+      "name": "fav me",
+      "short": "fav",
+      "reading": "ファボミー",
+      "color": "#ff7fa8",
+      "eventernote": "https://www.eventernote.com/actors/fav%20me/83357",
+      "members": []
+    },
+    {
+      "id": "kimura_misa",
+      "name": "木村ミサ",
+      "short": "ミサ",
+      "reading": "きむらみさ",
+      "color": "#ecca63",
+      "eventernote": "",
+      "members": []
+    },
+    {
+      "id": "kawaii_lab",
+      "name": "KAWAII LAB.(合同)",
+      "short": "合同",
+      "reading": "カワイイラボ合同",
+      "color": "#cda6ef",
+      "eventernote": "https://kawaiilab.asobisystem.com/",
+      "members": []
+    }
+  ]
+}
