@@ -1,7 +1,7 @@
 {
   "meta": {
-    "last_updated": "2026-06-25T06:15:11+09:00",
-    "last_attempt": "2026-06-25T06:15:11+09:00",
+    "last_updated": "2026-06-25T19:21:03+09:00",
+    "last_attempt": "2026-06-25T19:21:03+09:00",
     "source": "https://kawaiilab.asobisystem.com/live_information/schedule/list",
     "event_count": 98,
     "ok": true,
@@ -766,28 +766,6 @@
       "source": "eventernote"
     },
     {
-      "id": "evt464752",
-      "date": "2026-08-01",
-      "youbi": "",
-      "category": "FES",
-      "title": "OSAKA GIGANTIC MUSIC FESTIVAL 2026 -THANKS 10TH GIGA- DAY3",
-      "groups": [
-        "cutie_street"
-      ],
-      "venue": "舞洲スポーツアイランド",
-      "prefecture": "",
-      "open": "",
-      "start": "",
-      "ticket_url": "",
-      "ticket_status": "",
-      "ticket_info": "",
-      "price": "",
-      "deadline": "",
-      "info": "",
-      "detail_url": "https://www.eventernote.com/events/464752",
-      "source": "eventernote"
-    },
-    {
       "id": "evt467335",
       "date": "2026-08-01",
       "youbi": "",
@@ -1008,11 +986,33 @@
       "source": "eventernote"
     },
     {
+      "id": "evt470209",
+      "date": "2026-09-12",
+      "youbi": "",
+      "category": "FES",
+      "title": "TOMAKOMAI MIRAI FEST 2026【DAY1】",
+      "groups": [
+        "cutie_street"
+      ],
+      "venue": "苫小牧港 北ふ頭緑地 キラキラ公園",
+      "prefecture": "",
+      "open": "",
+      "start": "",
+      "ticket_url": "",
+      "ticket_status": "",
+      "ticket_info": "",
+      "price": "",
+      "deadline": "",
+      "info": "",
+      "detail_url": "https://www.eventernote.com/events/470209",
+      "source": "eventernote"
+    },
+    {
       "id": "evt470217",
       "date": "2026-09-13",
       "youbi": "",
       "category": "FES",
-      "title": "TOMAKOMAI MIRAI FEST 2026【DAY2】9/13",
+      "title": "TOMAKOMAI MIRAI FEST 2026【DAY2】",
       "groups": [
         "sweet_steady"
       ],
