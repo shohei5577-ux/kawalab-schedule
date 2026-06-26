@@ -1,7 +1,7 @@
 {
   "meta": {
-    "last_updated": "2026-06-27T03:01:13+09:00",
-    "last_attempt": "2026-06-27T03:01:13+09:00",
+    "last_updated": "2026-06-27T05:04:23+09:00",
+    "last_attempt": "2026-06-27T05:04:23+09:00",
     "source": "https://kawaiilab.asobisystem.com/live_information/schedule/list",
     "event_count": 95,
     "ok": true,
@@ -1426,28 +1426,6 @@
       "source": "eventernote"
     },
     {
-      "id": "evt426988",
-      "date": "2026-10-10",
-      "youbi": "",
-      "category": "LIVE",
-      "title": "CANDY TUNE JAPAN TOUR 2026 - AUTUMN - 鳥取公演",
-      "groups": [
-        "candy_tune"
-      ],
-      "venue": "米子コンベンションセンター BiG SHiP",
-      "prefecture": "",
-      "open": "17:30",
-      "start": "18:30",
-      "ticket_url": "",
-      "ticket_status": "",
-      "ticket_info": "",
-      "price": "",
-      "deadline": "",
-      "info": "",
-      "detail_url": "https://www.eventernote.com/events/426988",
-      "source": "eventernote"
-    },
-    {
       "id": "evt467383",
       "date": "2026-10-11",
       "youbi": "",
@@ -1511,28 +1489,6 @@
       "deadline": "",
       "info": "",
       "detail_url": "https://www.eventernote.com/events/467385",
-      "source": "eventernote"
-    },
-    {
-      "id": "evt437534",
-      "date": "2026-10-19",
-      "youbi": "",
-      "category": "LIVE",
-      "title": "CANDY TUNE JAPAN TOUR 2026 - AUTUMN - 三重公演",
-      "groups": [
-        "candy_tune"
-      ],
-      "venue": "三重県文化会館(三重県総合文化センター)",
-      "prefecture": "",
-      "open": "17:30",
-      "start": "18:30",
-      "ticket_url": "",
-      "ticket_status": "",
-      "ticket_info": "",
-      "price": "",
-      "deadline": "",
-      "info": "",
-      "detail_url": "https://www.eventernote.com/events/437534",
       "source": "eventernote"
     },
     {
@@ -1668,6 +1624,28 @@
       "source": "eventernote"
     },
     {
+      "id": "evt437534",
+      "date": "2026-10-29",
+      "youbi": "",
+      "category": "LIVE",
+      "title": "CANDY TUNE JAPAN TOUR 2026 - AUTUMN - 三重公演",
+      "groups": [
+        "candy_tune"
+      ],
+      "venue": "三重県文化会館(三重県総合文化センター)",
+      "prefecture": "",
+      "open": "17:30",
+      "start": "18:30",
+      "ticket_url": "",
+      "ticket_status": "",
+      "ticket_info": "",
+      "price": "",
+      "deadline": "",
+      "info": "",
+      "detail_url": "https://www.eventernote.com/events/437534",
+      "source": "eventernote"
+    },
+    {
       "id": "evt480415",
       "date": "2026-10-31",
       "youbi": "",
@@ -1753,6 +1731,28 @@
       "deadline": "",
       "info": "",
       "detail_url": "https://www.eventernote.com/events/467399",
+      "source": "eventernote"
+    },
+    {
+      "id": "evt426988",
+      "date": "2026-11-10",
+      "youbi": "",
+      "category": "LIVE",
+      "title": "CANDY TUNE JAPAN TOUR 2026 - AUTUMN - 鳥取公演",
+      "groups": [
+        "candy_tune"
+      ],
+      "venue": "米子コンベンションセンター BiG SHiP",
+      "prefecture": "",
+      "open": "17:30",
+      "start": "18:30",
+      "ticket_url": "",
+      "ticket_status": "",
+      "ticket_info": "",
+      "price": "",
+      "deadline": "",
+      "info": "",
+      "detail_url": "https://www.eventernote.com/events/426988",
       "source": "eventernote"
     },
     {
