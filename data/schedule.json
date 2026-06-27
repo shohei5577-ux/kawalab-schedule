@@ -1,26 +1,20 @@
 {
   "meta": {
     "last_updated": "2026-06-27T19:19:43+09:00",
-    "last_attempt": "2026-06-27T19:19:43+09:00",
+    "last_attempt": "2026-06-27T21:14:58+09:00",
     "source": "https://kawaiilab.asobisystem.com/live_information/schedule/list",
     "event_count": 95,
-    "ok": true,
-    "health": "good",
-    "warnings": [],
+    "ok": false,
+    "health": "fail",
+    "warnings": [
+      "公式の月別一覧が全て取得できませんでした(0件)。サイト構造変更の可能性。"
+    ],
     "stats": {
-      "events": 95,
-      "official": 10,
-      "eventernote": 85,
-      "empty_date": 0,
-      "empty_venue_official": 0,
-      "empty_groups_official": 1,
-      "prev_official": 10,
-      "prev_eventernote": 85,
-      "list_month_failures": 0,
-      "detail_attempted": 10,
-      "detail_failures": 0,
-      "eventernote_failures": 0
-    }
+      "events": 0,
+      "official": 0,
+      "list_month_failures": 7
+    },
+    "note": "一覧0件のため既存維持"
   },
   "events": [
     {
