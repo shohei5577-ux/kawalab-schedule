@@ -1,7 +1,7 @@
 {
   "meta": {
-    "last_updated": "2026-06-30T01:08:57+09:00",
-    "last_attempt": "2026-06-30T01:08:57+09:00",
+    "last_updated": "2026-06-30T04:09:54+09:00",
+    "last_attempt": "2026-06-30T04:09:54+09:00",
     "source": "https://kawaiilab.asobisystem.com/live_information/schedule/list",
     "event_count": 93,
     "ok": true,
@@ -15,7 +15,7 @@
       "empty_venue_official": 0,
       "empty_groups_official": 1,
       "prev_official": 10,
-      "prev_eventernote": 84,
+      "prev_eventernote": 83,
       "list_month_failures": 0,
       "detail_attempted": 10,
       "detail_failures": 0,
