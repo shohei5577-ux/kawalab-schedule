@@ -1,23 +1,25 @@
 {
   "meta": {
     "last_updated": "2026-06-30T23:38:43+09:00",
-    "last_attempt": "2026-06-30T23:38:43+09:00",
+    "last_attempt": "2026-07-01T02:11:03+09:00",
     "source": "https://kawaiilab.asobisystem.com/live_information/schedule/list",
     "event_count": 93,
-    "ok": true,
-    "health": "good",
-    "warnings": [],
+    "ok": false,
+    "health": "fail",
+    "warnings": [
+      "公式予定が前回10件→今回3件に激減(6割超減)。取得失敗の可能性。"
+    ],
     "stats": {
-      "events": 93,
-      "official": 10,
+      "events": 86,
+      "official": 3,
       "eventernote": 83,
       "empty_date": 0,
       "empty_venue_official": 0,
-      "empty_groups_official": 1,
+      "empty_groups_official": 0,
       "prev_official": 10,
       "prev_eventernote": 83,
       "list_month_failures": 0,
-      "detail_attempted": 10,
+      "detail_attempted": 3,
       "detail_failures": 0,
       "eventernote_failures": 0
     }
