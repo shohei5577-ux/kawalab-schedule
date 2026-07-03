@@ -419,7 +419,7 @@ def load_json(path, default):
 
 
 # ---- 取得結果の自己点検(中身が壊れていないか) -------------------------------
-def quality_check(events, prev_official, prev_eventernote):
+def quality_check(events, prev_official, prev_eventernote, prev_attempt_official=None):
     """取得できたデータの中身を点検し (health, warnings, stats) を返す。
     health は配信状態の信号:
       'good' = 正常 / 'warn' = 更新はできたが要注意 / 'fail' = 信頼できる更新ができず旧データ維持を推奨。
@@ -429,7 +429,14 @@ def quality_check(events, prev_official, prev_eventernote):
       - Eventernote   = 補助(先々のツアー/フェス)。落ちても warn 止まりにし、本体まで止めない。
         (現状データは Eventernote 偏重なので、合算件数で判定すると補助の不調で誤って fail 凍結してしまう)
     空欄チェックも公式のみを分母にする(Eventernote は会場未定が正常にあり得るため)。
-    通信失敗の数は呼び出し側で足す。"""
+    通信失敗の数は呼び出し側で足す。
+
+    prev_attempt_official: 直前の"試行"(成功/失敗問わず)で観測した公式件数。
+    fail 判定時は events を書かず prev_official(=最後に書き込まれた件数)が
+    更新されないため、サイト側で本当に件数が減った場合でも判定が固定化して
+    毎回 fail し続けるループになり得る。同じ件数が2回連続で観測されたら
+    「一時的な取得ミスではなく実際の変化」とみなして warn に降格し、
+    新データの書き込みを許可して基準値を更新できるようにする。"""
     n = len(events)
     official = [e for e in events if e.get("source") == "official"]
     evt = [e for e in events if e.get("source") != "official"]
@@ -448,20 +455,36 @@ def quality_check(events, prev_official, prev_eventernote):
         "prev_eventernote": prev_eventernote,
     }
     warnings = []
+    # 直前の"試行"と今回が同じ件数 = 一時的な取得ミスではなく実際の変化と確定できる。
+    confirmed_stable = (prev_attempt_official is not None
+                         and prev_attempt_official == no)
 
     # --- 致命的(公式=本体が壊れた → 旧データ維持を推奨) ---
     if prev_official > 0 and no == 0:
-        return "fail", [f"公式予定が0件(前回{prev_official}件)。サイト構造変更の可能性。"], stats
+        if confirmed_stable:
+            warnings.append(
+                f"公式予定が0件(前回書き込み時{prev_official}件)。"
+                "前回試行時も同じ0件だったため実際の変化として確定し、新データを書き込みます。")
+        else:
+            return "fail", [f"公式予定が0件(前回{prev_official}件)。サイト構造変更の可能性。次回も同じ結果なら自動確定します。"], stats
     if prev_official >= 5 and no <= prev_official * 0.4:
-        return ("fail",
-                [f"公式予定が前回{prev_official}件→今回{no}件に激減(6割超減)。取得失敗の可能性。"],
-                stats)
+        if confirmed_stable:
+            warnings.append(
+                f"公式予定が前回書き込み時{prev_official}件→今回{no}件に激減(6割超減)。"
+                "前回試行時も同じ件数だったため実際の変化として確定し、新データを書き込みます。")
+        else:
+            return ("fail",
+                    [f"公式予定が前回{prev_official}件→今回{no}件に激減(6割超減)。取得失敗の可能性。次回も同じ結果なら自動確定します。"],
+                    stats)
     if n == 0:
         return "fail", ["取得結果が0件。サイト構造変更の可能性。"], stats
 
     # --- 要注意(更新はするが警告を残す) ---
-    # 公式の中程度の減少(本体の取りこぼし)
-    if prev_official >= 5 and no <= prev_official * 0.7:
+    # 公式の中程度の減少(本体の取りこぼし)。confirmed_stable で既に激減を報告済みなら重複させない。
+    already_noted_drop = confirmed_stable and prev_official >= 5 and no <= prev_official * 0.4
+    if already_noted_drop:
+        pass
+    elif prev_official >= 5 and no <= prev_official * 0.7:
         warnings.append(f"公式予定が前回{prev_official}件→今回{no}件に減少(3割超減)。")
     # 小規模時の安全網: 前回が少数(2〜4件)でも半減かつ今回1件以下なら警告(prev>=5 の網からこぼれる範囲)
     elif 2 <= prev_official < 5 and no <= prev_official * 0.5:
@@ -654,7 +677,11 @@ def main():
     # --- 自己点検(取得した中身が壊れていないか) ---
     prev_official = len([e for e in old.get("events", []) if e.get("source") == "official"])
     prev_eventernote = len([e for e in old.get("events", []) if e.get("source") != "official"])
-    health, warnings, stats = quality_check(events, prev_official, prev_eventernote)
+    # fail時は events を書かないため、直前"試行"の観測件数は meta.stats に残る値を見る
+    # (2回連続で同じ件数を観測した場合の実変化確定判定に使う)。
+    prev_attempt_official = old.get("meta", {}).get("stats", {}).get("official")
+    health, warnings, stats = quality_check(
+        events, prev_official, prev_eventernote, prev_attempt_official)
     detail_attempted = fetched + detail_fail   # 実際に詳細取得を試みた件数(キャッシュ再利用分は除く)
     stats["list_month_failures"] = list_fail
     stats["detail_attempted"] = detail_attempted
